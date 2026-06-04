@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Portfolio & Link-in-Bio for Devendra Prajapat - B.Tech AI & DS Student at Global Institute of Technology.">
+    <meta name="keywords" content="Devendra Prajapat, Portfolio, Link in Bio, AI & DS, Python, Web Development, GIT Jaipur">
+    <meta name="author" content="Devendra Prajapat">
+    <title>Devendra Prajapat | Portfolio</title>
+    
+    <!-- Google Fonts (Poppins & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <!-- Dynamic Canvas Background for Particles Elements -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Animated Ambient Mesh Background Design -->
+    <div class="bg-mesh">
+        <div class="mesh-orb orb-1"></div>
+        <div class="mesh-orb orb-2"></div>
+        <div class="mesh-orb orb-3"></div>
+    </div>
+
+    <main class="container">
+        <!-- Main Glassmorphism Wrapper with entrance animations -->
+        <div class="glass-card element-reveal">
+            
+            <!-- Hero Section -->
+            <section class="hero-section element-reveal">
+                <div class="avatar-container">
+    <div class="avatar-placeholder">
+        <img src="profile.jpeg" alt="Devendra Prajapat">
+    </div>
+</div>
+                <h1 class="name">Devendra Prajapat</h1>
+                <p class="tagline"><i class="fa-solid fa-brain-circuit"></i> B.Tech AI & DS Student</p>
+                <p class="college"><i class="fa-solid fa-university"></i> Global Institute of Technology</p>
+                <p class="short-intro">
+                    Passionate about Artificial Intelligence, Data Science, Technology, Learning, and Building Innovative Projects.
+                </p>
+            </section>
+
+            <!-- Quick Links Section -->
+            <section class="links-section">
+                <a href="https://www.instagram.com/devendra.p_07/" target="_blank" class="link-btn insta-btn">
+    <i class="fab fa-instagram"></i>
+    Instagram
+</a>
+                <a href="mailto:devendraprajapat2812@gmail.com" class="link-btn email-btn element-reveal">
+                    <i class="fa-solid fa-envelope"></i> Email Me
+                </a>
+                <a href="https://rtunotes.in/" target="_blank" class="link-btn notes-btn element-reveal">
+                    <i class="fa-solid fa-book-bookmark"></i> RTU Notes
+                </a>
+                <a href="#contact" class="link-btn contact-btn element-reveal">
+                    <i class="fa-solid fa-paper-plane"></i> Contact Me
+                </a>
+            </section>
+
+            <hr class="divider element-reveal">
+
+            <!-- About Me Section -->
+            <section class="about-section element-reveal">
+                <h2 class="section-title"><i class="fa-solid fa-user"></i> About Me</h2>
+                <p class="about-text">
+                    Hello, I'm Devendra Prajapat, a 2nd Year B.Tech student specializing in Artificial Intelligence & Data Science at Global Institute of Technology. I enjoy learning modern technologies, exploring AI concepts, developing projects, and continuously improving my technical skills.
+                </p>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="skills-section element-reveal">
+                <h2 class="section-title"><i class="fa-solid fa-code"></i> Core Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-tag"><i class="fa-solid fa-robot"></i> Artificial Intelligence</div>
+                    <div class="skill-tag"><i class="fa-solid fa-chart-pie"></i> Data Science</div>
+                    <div class="skill-tag"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="skill-tag"><i class="fa-solid fa-gears"></i> Machine Learning</div>
+                    <div class="skill-tag"><i class="fa-solid fa-laptop-code"></i> Web Development</div>
+                    <div class="skill-tag"><i class="fa-solid fa-lightbulb"></i> Problem Solving</div>
+                </div>
+            </section>
+
+            <!-- Custom QR Section -->
+            <section class="qr-section element-reveal">
+                <h2 class="section-title"><i class="fa-solid fa-qrcode"></i> Connect Instantly</h2>
+                <div class="qr-card">
+                    <div id="qrcode-container"></div>
+                    <p class="qr-username">@devendra.p_07</p>
+                    <span class="qr-badge">Scan to Connect</span>
+                </div>
+            </section>
+
+            <hr class="divider element-reveal">
+
+            <!-- Contact/Footer Section -->
+            <section id="contact" class="contact-footer element-reveal">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-methods">
+                    <a href="mailto:devendraprajapat2812@gmail.com" class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>devendraprajapat2812@gmail.com</span>
+                    </a>
+                    <a href="https://instagram.com/devendra.p_07" target="_blank" class="contact-item">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span>@devendra.p_07</span>
+                    </a>
+                </div>
+                <p class="footer-credit">© 2026 Devendra Prajapat. All Rights Reserved.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- QRCode.js Library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Custom Interactive JS -->
+    <script src="script.js"></script>
+</body>
+</html>
