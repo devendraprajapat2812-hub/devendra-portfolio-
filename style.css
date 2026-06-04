@@ -1,0 +1,481 @@
+/* ==========================================================================
+   1. CSS VARIABLES & BASE STYLES
+   ========================================================================== */
+:root {
+    --bg-dark: #06070d;
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --card-hover-border: rgba(255, 255, 255, 0.18);
+    --text-primary: #ffffff;
+    --text-muted: #a3a3a3;
+    --accent-1: #6366f1; /* Neon Indigo */
+    --accent-2: #d946ef; /* Bright Violet */
+    --accent-3: #00f2fe; /* Cyan Link */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --transition-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    padding: 60px 20px;
+}
+
+/* ==========================================================================
+   2. INTERACTIVE ANIMATED BACKGROUND DESIGN
+   ========================================================================== */
+/* Particle system element canvas layout wrapper */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Fluid Moving Background Grid Orb Mesh Design */
+.bg-mesh {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    filter: blur(140px);
+    opacity: 0.35;
+}
+
+.mesh-orb {
+    position: absolute;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent-1);
+    top: -10%;
+    left: -10%;
+    animation: morphOrb 18s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+    width: 450px;
+    height: 450px;
+    background: var(--accent-2);
+    bottom: -5%;
+    right: -5%;
+    animation: morphOrb 14s ease-in-out infinite alternate-reverse;
+}
+
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-3);
+    top: 40%;
+    left: 50%;
+    animation: floatOrb 22s linear infinite;
+}
+
+@keyframes morphOrb {
+    0% { transform: scale(1) translate(0px, 0px) rotate(0deg); border-radius: 50%; }
+    50% { transform: scale(1.15) translate(60px, -40px) rotate(90deg); border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%; }
+    100% { transform: scale(0.9) translate(-20px, 50px) rotate(180deg); border-radius: 60% 40% 70% 30% / 60% 50% 45% 55%; }
+}
+
+@keyframes floatOrb {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translate(80px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translate(80px) rotate(-360deg); }
+}
+
+/* ==========================================================================
+   3. STAGGERED ENTRANCE REVEAL EFFECTS
+   ========================================================================== */
+.element-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+}
+
+.element-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   4. GLASSMORPHISM CORE CARD LAYER
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 520px;
+    z-index: 10;
+}
+
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+    padding: 45px 35px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    transition: border-color 0.5s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title i {
+    color: var(--accent-1);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   5. PROFILE COMPONENT & HERO STYLING
+   ========================================================================== */
+.hero-section {
+    text-align: center;
+}
+
+.avatar-container {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+    border: 3px solid #6366f1;
+}
+
+.avatar-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.avatar-placeholder i {
+    font-size: 2.6rem;
+    background: linear-gradient(135deg, #ffffff, var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulseIcon 4s infinite alternate ease-in-out;
+}
+
+@keyframes pulseIcon {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.05) rotate(5deg); }
+}
+
+.avatar-container::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    z-index: 1;
+    opacity: 0.35;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.avatar-container:hover::before {
+    opacity: 0.9;
+    transform: scale(1.04) rotate(180deg);
+}
+
+.name {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+    background: linear-gradient(180deg, #ffffff 60%, #c4c4c4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.tagline i {
+    color: var(--accent-2);
+}
+
+.college {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.short-intro {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   6. QUICK LINKS (LINK-IN-BIO INTERACTIONS)
+   ========================================================================== */
+.links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--card-border);
+    transition: all 0.4s var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    gap: 12px;
+}
+
+.link-btn i {
+    font-size: 1.1rem;
+    transition: transform 0.4s var(--transition-smooth);
+}
+
+/* Custom Magnetic / Hover Transform Effects */
+.link-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.link-btn:hover i {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* Theme-specific Hover Color accents */
+.insta-btn:hover { border-color: #e1306c; color: #ff6097; }
+.email-btn:hover { border-color: #ea4335; color: #ff6b5e; }
+.notes-btn:hover { border-color: var(--accent-3); color: var(--accent-3); }
+.contact-btn:hover { border-color: var(--accent-1); color: #8183ff; }
+
+/* ==========================================================================
+   7. ABOUT & CORE SKILLS LAYOUT
+   ========================================================================== */
+.about-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.skill-tag {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid var(--card-border);
+    padding: 13px 15px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.skill-tag i {
+    color: var(--accent-2);
+    font-size: 0.95rem;
+    transition: transform 0.3s ease;
+}
+
+.skill-tag:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--card-hover-border);
+    transform: translateY(-1px);
+}
+
+.skill-tag:hover i {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* ==========================================================================
+   8. QR CARDS MODULAR BLOCK
+   ========================================================================== */
+.qr-section {
+    text-align: center;
+}
+
+.qr-card {
+    background: rgba(255, 255, 255, 0.005);
+    border: 1px solid var(--card-border);
+    padding: 26px;
+    border-radius: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 6px;
+    transition: transform 0.4s var(--transition-smooth);
+}
+
+.qr-card:hover {
+    transform: scale(1.02);
+}
+
+#qrcode-container {
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 14px;
+    display: inline-block;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.4s ease;
+}
+
+#qrcode-container img {
+    display: block;
+}
+
+.qr-username {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+}
+
+.qr-badge {
+    font-size: 0.75rem;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.25);
+}
+
+/* ==========================================================================
+   9. FOOTER SECTION STYLING
+   ========================================================================== */
+.contact-footer {
+    text-align: center;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.contact-item {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.contact-item i {
+    font-size: 0.95rem;
+}
+
+.contact-item:hover {
+    color: var(--text-primary);
+}
+
+.footer-credit {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.3px;
+}
+
+/* ==========================================================================
+   10. VIEWPORT MEDIA ADAPTATION
+   ========================================================================== */
+@media (max-width: 480px) {
+    body {
+        padding: 30px 14px;
+    }
+    
+    .glass-card {
+        padding: 35px 22px;
+        gap: 26px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .name {
+        font-size: 1.6rem;
+    }
+}
